@@ -6,9 +6,9 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/Lakmal98/go-bookstore/pkg/models"
+	"github.com/Lakmal98/go-bookstore/pkg/utils"
 	"github.com/gorilla/mux"
-	"github.com/lakmal98/go-bookstore/pkg/models"
-	"github.com/lakmal98/go-bookstore/pkg/utils"
 )
 
 var NewBook models.Book
@@ -58,7 +58,7 @@ func DeleteBook(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error while parsing")
 	}
 
-	bookDetails, _ := models.DeleteBook(ID)
+	bookDetails := models.DeleteBook(ID)
 	res, _ := json.Marshal(bookDetails)
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
